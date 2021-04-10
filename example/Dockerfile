@@ -11,5 +11,3 @@ RUN go mod init fake && go install github.com/partyzanex/pg-wait@${PG_WAIT_VERSI
 FROM alpine:3.13
 
 COPY --from=builder /go/bin/pg-wait /usr/local/bin
-
-ENTRYPOINT ["pg-wait"]
