@@ -24,7 +24,7 @@ $ pg-wait --dsn="postgresql://postgres:postgres@localhost:5432/mydatabase?sslmod
 2021/04/11 00:13:52 success!
 ```
 
-### Usage in docker-compose:
+### Usage via docker-compose:
 
 [Dockerfile](https://github.com/partyzanex/pg-wait/blob/main/example/Dockerfile):
 ```Dockerfile
@@ -41,8 +41,6 @@ RUN go mod init fake && go install github.com/partyzanex/pg-wait@${PG_WAIT_VERSI
 FROM alpine:3.13
 
 COPY --from=builder /go/bin/pg-wait /usr/local/bin
-
-ENTRYPOINT ["pg-wait"]
 ```
 
 [docker-compose.yml](https://github.com/partyzanex/pg-wait/blob/main/example/docker-compose.yml):
