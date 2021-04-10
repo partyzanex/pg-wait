@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+  postgres:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_USER: "test"
+      POSTGRES_PASSWORD: "test"
+      POSTGRES_DB: "test"
+    networks:
+      - example
+
+  pg-wait:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    command: sh -c "pg-wait --dsn=\"postgresql://test:test@postgres:5432/test?sslmode=disable\" --verbose --timeout=10s"
+    depends_on:
+      - postgres
+    networks:
+      - example
+
+networks:
+  example:
+    name: example_net
