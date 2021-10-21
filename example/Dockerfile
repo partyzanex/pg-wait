@@ -7,7 +7,7 @@ WORKDIR /go/src/pg-wait
 ENV GOPATH /go
 ENV PG_WAIT_VERSION v0.1.1
 
-RUN go mod init fake && go install github.com/partyzanex/pg-wait@${PG_WAIT_VERSION}
+RUN go mod init fake && go install github.com/partyzanex/pg-wait/cmd@${PG_WAIT_VERSION}
 
 
 FROM alpine:3.13
