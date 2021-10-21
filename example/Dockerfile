@@ -1,9 +1,11 @@
-FROM golang:1.16-alpine as builder
+FROM golang:1.17-alpine as builder
+
+RUN apk add --no-cache git
 
 WORKDIR /go/src/pg-wait
 
 ENV GOPATH /go
-ENV PG_WAIT_VERSION v0.1.0
+ENV PG_WAIT_VERSION v0.1.1
 
 RUN go mod init fake && go install github.com/partyzanex/pg-wait@${PG_WAIT_VERSION}
 
