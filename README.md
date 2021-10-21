@@ -2,7 +2,7 @@
 
 ### Install:
 ```bash
-go install github.com/partyzanex/pg-wait@v0.1.0
+go install github.com/partyzanex/pg-wait/cmd/pg-wait@v0.1.0
 ```
 
 ### Usage:
@@ -28,17 +28,17 @@ $ pg-wait --dsn="postgresql://postgres:postgres@localhost:5432/mydatabase?sslmod
 
 [Dockerfile](https://github.com/partyzanex/pg-wait/blob/main/example/Dockerfile):
 ```Dockerfile
-FROM golang:1.16-alpine as builder
+FROM golang:1.17-alpine as builder
 
 WORKDIR /go/src/pg-wait
 
 ENV GOPATH /go
 ENV PG_WAIT_VERSION v0.1.0
 
-RUN go mod init fake && go install github.com/partyzanex/pg-wait@${PG_WAIT_VERSION}
+RUN go mod init fake && go install github.com/partyzanex/pg-wait/cmd/pg-wait@${PG_WAIT_VERSION}
 
 
-FROM alpine:3.13
+FROM alpine:3.14
 
 COPY --from=builder /go/bin/pg-wait /usr/local/bin
 ```
